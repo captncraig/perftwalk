@@ -1,0 +1,13 @@
+{
+	"comment": "",
+	"ignore": "test",
+	"package": [
+		{
+			"checksumSHA1": "0g62kU4xVANggW905vRMZ9VMI80=",
+			"path": "gopkg.in/freeeve/uci.v1",
+			"revision": "2365824b929d08f393b3bdd8a70e2060f1fe1da9",
+			"revisionTime": "2016-01-13T19:42:33Z"
+		}
+	],
+	"rootPath": "github.com/captncraig/perftwalk"
+}
