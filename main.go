@@ -73,6 +73,7 @@ func checkAgainstStockFish(pos string, depth int) bool {
 			misCounts = append(misCounts, move)
 		}
 	}
+	// check for illegal moves
 	for move := range myMoves {
 		if _, ok := engineMoves[move]; !ok {
 			log.Printf("INVALID MOVE %s", move)
@@ -120,19 +121,3 @@ func countMoves(pos *chess.Position, depth int) (int, map[string]int) {
 	}
 	return total, ret
 }
-
-// u64 Perft(int depth)
-// {
-//     MOVE move_list[256];
-//     int n_moves, i;
-//     u64 nodes = 0;
-
-//     n_moves = GenerateLegalMoves(move_list);
-//     if (depth == 1) return n_moves;
-//     for (i = 0; i < n_moves; i++) {
-//         MakeMove(move_list[i]);
-//         nodes += Perft(depth - 1);
-//         UndoMove(move_list[i]);
-//     }
-//     return nodes;
-// }
