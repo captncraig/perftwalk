@@ -149,7 +149,7 @@ func (eng *Engine) SetFEN(fen string) error {
 	return err
 }
 
-var perftMoveRegex = regexp.MustCompile(`([a-h][1-8][a-h][1-8][qrkb]?):\s*([0-9]+)`)
+var perftMoveRegex = regexp.MustCompile(`([a-h][1-8][a-h][1-8][qrnb]?):\s*([0-9]+)`)
 
 func (eng *Engine) Perft(depth int) (total int, moves map[string]int, err error) {
 
