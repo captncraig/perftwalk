@@ -9,22 +9,22 @@ It compares perft results agains stockfish's results. When the total counts diff
 In the case of 1 or 2, we have found a reproducable bug in a single position:
 
 ```
-2018/12/14 00:40:52 Testing rnbq1k1r/pp1Pbppp/2p5/8/2B5/8/PPP1NnPP/RNBQK2R w KQ - 1 8
-2018/12/14 00:40:52
+2018/12/14 01:09:43 Testing rnbq1k1r/pp1Pbppp/2p5/8/2B5/P7/1PP1N1PP/RNBQK2n w KQ - 0 9
+2018/12/14 01:09:43
  A B C D E F G H
 8♜ ♞ ♝ ♛ - ♚ - ♜
 7♟ ♟ - ♙ ♝ ♟ ♟ ♟
 6- - ♟ - - - - -
 5- - - - - - - -
 4- - ♗ - - - - -
-3- - - - - - - -
-2♙ ♙ ♙ - ♘ ♞ ♙ ♙
-1♖ ♘ ♗ ♕ ♔ - - ♖
+3♙ - - - - - - -
+2- ♙ ♙ - ♘ - ♙ ♙
+1♖ ♘ ♗ ♕ ♔ - - ♞
 
-2018/12/14 00:40:56 Got 2104591 nodes at depth 4
-2018/12/14 00:40:56 Stockfish Got 2103487 nodes at depth 4
-2018/12/14 00:40:56 FAIL
-2018/12/14 00:40:56 INVALID MOVE d7c8n
+2018/12/14 01:09:43 Got 1226 nodes at depth 2
+2018/12/14 01:09:43 Stockfish Got 1196 nodes at depth 2
+2018/12/14 01:09:43 FAIL
+2018/12/14 01:09:43 INVALID MOVE e1g1
 ```
 
 In case 3, we know what path the inconsistency lies, so we can recurse until we find it.
