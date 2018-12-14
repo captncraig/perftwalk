@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"log"
 	"sort"
+	"time"
 
 	"github.com/notnil/chess"
 	"gopkg.in/freeeve/uci.v1"
@@ -19,7 +20,7 @@ var positions = []string{
 	"r4rk1/1pp1qppp/p1np1n2/2b1p1B1/2B1P1b1/P1NP1N2/1PP1QPPP/R4RK1 w - - 0 10",
 }
 
-const depth = 4
+const depth = 5
 
 var eng *uci.Engine
 
@@ -34,27 +35,37 @@ func main() {
 		Ponder: false,
 	})
 
+	failCount := 0
 	for _, pos := range positions {
 		if ok := checkAgainstStockFish(pos, depth); ok {
 			log.Println("PASS")
+		} else {
+			failCount++
 		}
 		fmt.Println("\n\n")
+	}
+	if failCount == 0 {
+		log.Println("ALL TESTS PASS")
+	} else {
+		log.Printf("%d FAILURES", failCount)
 	}
 }
 
 func checkAgainstStockFish(pos string, depth int) bool {
-	log.Printf("Testing %s", pos)
+	log.Printf("Testing %s at depth %d", pos, depth)
 	g, err := chess.FEN(pos)
 	if err != nil {
 		log.Fatal(err)
 	}
 	game := chess.NewGame(g)
 	log.Println(game.Position().Board().Draw())
+	start := time.Now()
 	n, myMoves := countMoves(game.Position(), depth)
-	log.Printf("Got %d nodes at depth %d", n, depth)
+	log.Printf("Got %d nodes at depth %d in %s", n, depth, time.Now().Sub(start))
 
+	start = time.Now()
 	n2, engineMoves := engineCount(game.Position(), depth)
-	log.Printf("Stockfish Got %d nodes at depth %d", n2, depth)
+	log.Printf("Stockfish Got %d nodes at depth %d in %s", n2, depth, time.Now().Sub(start))
 
 	if n == n2 {
 		return true
